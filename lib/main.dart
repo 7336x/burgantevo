@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:burgantevo/pages/homepage.dart';
 import 'package:burgantevo/pages/sign_in.dart';
 import 'package:burgantevo/pages/sign_up.dart';
 import 'package:burgantevo/providers/auth_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(
@@ -19,7 +19,6 @@ void main() {
 class BurganTevoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Initialize auth status when app starts
     Future.delayed(Duration.zero, () {
       context.read<AuthProvider>().initAuth();
     });
@@ -31,14 +30,15 @@ class BurganTevoApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/sign-up',
+      initialRoute: '/home', 
       routes: {
         '/home': (context) {
-          final authProvider = Provider.of<AuthProvider>(context);
+          final authProvider = Provider.of<AuthProvider>(context, listen: false);
           return authProvider.isAuth() ? HomePage() : SignInPage();
         },
         '/sign-in': (context) => SignInPage(),
         '/sign-up': (context) => SignUpPage(),
+        '/homepage': (context) => HomePage(), 
       },
     );
   }

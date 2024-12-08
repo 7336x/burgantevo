@@ -1,7 +1,9 @@
+import 'package:burgantevo/pages/ForgotPasswordPage.dart';
+import 'package:flutter/material.dart';
 import 'package:burgantevo/providers/auth_provider.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 
 class SignInPage extends StatelessWidget {
   SignInPage({super.key});
@@ -11,35 +13,45 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 2,
-      ),
-      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const SizedBox(height: 50),
+          Image.asset(
+            'assets/images/logo.png',
+            height: 250,
+            width: 250,
+          ),
           const SizedBox(height: 20),
           const Text(
-            "Sign In",
+            "Burgan Tevo",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 24,
-              color: Color.fromARGB(255, 4, 4, 4),
+              fontSize: 30,
+              color: Colors.black,
             ),
           ),
           const SizedBox(height: 20),
+          const Text(
+            "Sign in",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              color: Colors.black,
+            ),
+          ),
+          const SizedBox(height: 40),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextField(
               decoration: const InputDecoration(
                 hintText: 'Username',
                 border: OutlineInputBorder(),
-                hintStyle: TextStyle(color: Colors.red),
+                hintStyle: TextStyle(color: Colors.black),
               ),
               controller: usernameController,
-              style: const TextStyle(color: Colors.red),
+              style: const TextStyle(color: Colors.black),
             ),
           ),
           const SizedBox(height: 20),
@@ -49,11 +61,11 @@ class SignInPage extends StatelessWidget {
               decoration: const InputDecoration(
                 hintText: 'Password',
                 border: OutlineInputBorder(),
-                hintStyle: TextStyle(color: Colors.red),
+                hintStyle: TextStyle(color: Colors.black),
               ),
               controller: passwordController,
               obscureText: true,
-              style: const TextStyle(color: Colors.red),
+              style: const TextStyle(color: Colors.black),
             ),
           ),
           const SizedBox(height: 20),
@@ -61,10 +73,10 @@ class SignInPage extends StatelessWidget {
             width: 150,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.grey,
+                backgroundColor: Colors.blue,
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(30),
                 ),
               ),
               onPressed: () async {
@@ -99,35 +111,46 @@ class SignInPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          // Button to navigate to SignUpPage
-          SizedBox(
-            width: 150,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // A different color for contrast
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+                  );
+                },
+                child: const Text(
+                  "Forget Password?",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
-              onPressed: () {
-                // Navigate to SignUpPage
-                Navigator.pushReplacementNamed(context, '/sign-up');
-              },
-              child: const Text(
-                "Don't have an account? Sign Up",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/sign-up');
+                },
+                child: const Text(
+                  "Don't have an account? Sign Up",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
           const SizedBox(height: 50),
-          Text(
-            context.read<AuthProvider>().user?.username ?? "Not Logged in",
-            style: const TextStyle(color: Colors.red),
-          ),
         ],
       ),
     );

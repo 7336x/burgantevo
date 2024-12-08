@@ -50,19 +50,22 @@ class _CreateTripPageState extends State<CreateTripPage> {
     return Scaffold(
       backgroundColor: Colors.white, 
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Create Trip',
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
-            ),
-            SizedBox(width: 8),
-            Transform.rotate(
-               angle: 11.14 / 2, 
-              child: Icon(Icons.airplanemode_active, color: Colors.blue),
-            ),
-          ],
+        title: Padding(
+          padding: const EdgeInsets.only(top: 20), // Move title down
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Create Trip',
+                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
+              ),
+              SizedBox(width: 8),
+              Transform.rotate(
+                angle: 11.14 / 2, 
+                child: Icon(Icons.airplanemode_active, color: Colors.blue, size: 40), // Adjusted size
+              ),
+            ],
+          ),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
@@ -76,9 +79,15 @@ class _CreateTripPageState extends State<CreateTripPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 40), // Add margin above the text inputs
             DropdownButtonFormField<String>(
               value: _selectedDestination,
-              decoration: InputDecoration(labelText: 'Choose your Destination'),
+              decoration: InputDecoration(
+                labelText: 'Choose your Destination',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10), // Rounded corners
+                ),
+              ),
               items: destinations.map((String destination) {
                 return DropdownMenuItem<String>(
                   value: destination,
@@ -91,32 +100,43 @@ class _CreateTripPageState extends State<CreateTripPage> {
                 });
               },
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20), // Space between fields
 
             TextField(
               controller: _budgetController,
-              decoration: InputDecoration(labelText: 'Trip Budget'),
+              decoration: InputDecoration(
+                labelText: 'Trip Budget',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10), // Rounded corners
+                ),
+              ),
               keyboardType: TextInputType.number,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20), // Space between fields
 
             TextField(
               controller: _startDateController,
               decoration: InputDecoration(
                 labelText: 'From',
                 hintText: 'Enter start date (e.g. 12 May 2025)',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10), // Rounded corners
+                ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20), // Space between fields
 
             TextField(
               controller: _endDateController,
               decoration: InputDecoration(
                 labelText: 'Until',
                 hintText: 'Enter end date (e.g. 15 May 2025)',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10), // Rounded corners
+                ),
               ),
             ),
-            SizedBox(height: 500),  
+            SizedBox(height: 400),  // Space between fields
 
             Center(
               child: ElevatedButton(

@@ -48,13 +48,14 @@ class _CreateTripPageState extends State<CreateTripPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white, 
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Create Trip',
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
             ),
             SizedBox(width: 8),
             Transform.rotate(
@@ -75,7 +76,6 @@ class _CreateTripPageState extends State<CreateTripPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // destination Dropdown
             DropdownButtonFormField<String>(
               value: _selectedDestination,
               decoration: InputDecoration(labelText: 'Choose your Destination'),
@@ -93,7 +93,6 @@ class _CreateTripPageState extends State<CreateTripPage> {
             ),
             SizedBox(height: 20),
 
-            // trip Budget Input
             TextField(
               controller: _budgetController,
               decoration: InputDecoration(labelText: 'Trip Budget'),
@@ -101,7 +100,6 @@ class _CreateTripPageState extends State<CreateTripPage> {
             ),
             SizedBox(height: 20),
 
-            // from date 
             TextField(
               controller: _startDateController,
               decoration: InputDecoration(
@@ -111,7 +109,6 @@ class _CreateTripPageState extends State<CreateTripPage> {
             ),
             SizedBox(height: 20),
 
-            // until date 
             TextField(
               controller: _endDateController,
               decoration: InputDecoration(
@@ -119,15 +116,14 @@ class _CreateTripPageState extends State<CreateTripPage> {
                 hintText: 'Enter end date (e.g. 15 May 2025)',
               ),
             ),
-            SizedBox(height: 40),  
+            SizedBox(height: 500),  
 
-            
             Center(
               child: ElevatedButton(
                 onPressed: _saveTrip,
                 child: Text(
                   'Create',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), 
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold , fontSize:  18), 
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue, 

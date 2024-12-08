@@ -73,7 +73,6 @@ class _HomePageState extends State<HomePage> {
     ),
   ];
 
-  // navigate to the CreateTripPage and add the new trip
   void _navigateToCreateTripPage() async {
     final newTrip = await Navigator.push(
       context,
@@ -82,7 +81,7 @@ class _HomePageState extends State<HomePage> {
 
     if (newTrip != null) {
       setState(() {
-        trips.add(newTrip); // adding the new trip to the list
+        trips.add(newTrip); 
       });
     }
   }
@@ -90,6 +89,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white, 
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -128,7 +128,6 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 10),
 
-            // create Your Trip Section
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -148,14 +147,12 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 20),
 
-           
             Text(
               'Current Trips',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             SizedBox(height: 10),
 
-           
             Expanded(
               child: ListView.builder(
                 itemCount: trips.length,

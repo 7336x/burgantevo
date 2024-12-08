@@ -101,13 +101,14 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Burgan Tevo',
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-            ),
-            Transform.rotate(
-              angle: 11.14 / 2, 
-              child: Icon(Icons.airplanemode_active, color: Colors.blue),
-            ),
+              '  Burgan Tevo',
+               style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
+              ),
+              SizedBox(width: 8),
+              Transform.rotate(
+                angle: 11.14 / 2, 
+                child: Icon(Icons.airplanemode_active, color: Colors.blue, size: 40), // Adjusted size
+              ),
           ],
         ),
         actions: [

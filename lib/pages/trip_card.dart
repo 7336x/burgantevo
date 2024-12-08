@@ -3,9 +3,8 @@ import '../models/trip_model.dart';
 import '../dashed_line_painter.dart'; 
 
 class TripCard extends StatelessWidget {
-  final Trip trip; 
+  final Trip trip;
 
-  // constructor to receive a Trip object
   TripCard({required this.trip});
 
   @override
@@ -19,7 +18,6 @@ class TripCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          
           Container(
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
@@ -32,28 +30,91 @@ class TripCard extends StatelessWidget {
                   children: [
                     Icon(Icons.circle, size: 10, color: trip.status == 'finished' ? Colors.red : Colors.green),
                     SizedBox(width: 5),
-                    Text(trip.destination, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                    Text(
+                      trip.destination, 
+                      style: TextStyle(
+                        color: Colors.white, 
+                        fontWeight: FontWeight.bold,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black.withOpacity(0.7),
+                            offset: Offset(2, 2),
+                            blurRadius: 6,
+                          ),
+                        ],
+                      ),
+                    ),
                     Spacer(),
-                    Text('${trip.from} - ${trip.to}', style: TextStyle(color: Colors.white)),
+                    Text(
+                      '${trip.from} - ${trip.to}', 
+                      style: TextStyle(
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black.withOpacity(0.7),
+                            offset: Offset(2, 2),
+                            blurRadius: 6,
+                          ),
+                        ],
+                      ),
+                    ),
                     IconButton(
                       icon: Icon(Icons.arrow_forward_ios, color: Colors.white),
                       onPressed: () {}, 
                     ),
                   ],
                 ),
-          //       // Dashed Line Under Destination Name
-          //       Container(
-          //         margin: EdgeInsets.symmetric(vertical: 5),
-          //         height: 2,
-          //         child: CustomPaint(
-          //           painter: DashedLinePainter(),
-          //         ),
-          //       ),
-             ],
-           ),
-           ),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      trip.startDate, 
+                      style: TextStyle(
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black.withOpacity(0.7),
+                            offset: Offset(2, 2),
+                            blurRadius: 6,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Text(
+                      trip.endDate, 
+                      style: TextStyle(
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black.withOpacity(0.7),
+                            offset: Offset(2, 2),
+                            blurRadius: 6,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CustomPaint(
+                      size: Size(double.infinity, 30),
+                      painter: DashedLinePainter(),
+                    ),
+                    Transform.rotate(
+                      angle: 3.14 / 2, 
+                      child: Icon(Icons.airplanemode_active, color: Colors.white),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
 
-          // card content with Image, Dates, and Progress
+          // Image Container
           Container(
             height: 150,
             decoration: BoxDecoration(
@@ -65,42 +126,62 @@ class TripCard extends StatelessWidget {
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
             ),
           ),
+
+          // Content Below Image
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10),
-                Text('${trip.startDate} - ${trip.endDate}', style: TextStyle(color: Colors.white)),
-                SizedBox(height: 10),
                 Row(
                   children: [
-                    Text(trip.amount, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                    Spacer(),
-                    Text(trip.totalAmount, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                SizedBox(height: 10),
-
-                // Dashed Line with Airplane
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    CustomPaint(
-                      size: Size(double.infinity, 20),
-                      painter: DashedLinePainter(),
+                    Text(
+                      trip.amount,
+                      style: TextStyle(
+                        color: Colors.white, 
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18, // Increased font size for the amounts
+                        shadows: [
+                          Shadow(
+                            color: Colors.black.withOpacity(0.7),
+                            offset: Offset(2, 2),
+                            blurRadius: 6,
+                          ),
+                        ],
+                      ),
                     ),
-                    Icon(Icons.airplanemode_active, color: Colors.white, size: 20),
-                     // Centered airplane icon
+                    Spacer(),
+                    Text(
+                      trip.totalAmount,
+                      style: TextStyle(
+                        color: Colors.white, 
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18, // Increased font size for the amounts
+                        shadows: [
+                          Shadow(
+                            color: Colors.black.withOpacity(0.7),
+                            offset: Offset(2, 2),
+                            blurRadius: 6,
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 SizedBox(height: 10),
 
-                // Progress Bar
-                LinearProgressIndicator(
-                  value: trip.status == 'finished' ? 0.8 : (trip.status == 'upcoming' ? 0.0 : 0.5),
-                  backgroundColor: Colors.white,
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                // Progress Bar with Rounded Corners
+                Container(
+                  height: 10,  
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),  // Rounded corners for the progress bar
+                    color: Colors.white,
+                  ),
+                  child: LinearProgressIndicator(
+                    value: trip.status == 'finished' ? 0.8 : (trip.status == 'upcoming' ? 0.0 : 0.5),
+                    backgroundColor: Colors.white,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                  ),
                 ),
               ],
             ),

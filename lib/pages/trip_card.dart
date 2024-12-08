@@ -37,9 +37,9 @@ class TripCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.7),
+                            color: Colors.black.withOpacity(0.5),
                             offset: Offset(2, 2),
-                            blurRadius: 6,
+                            blurRadius: 4,
                           ),
                         ],
                       ),
@@ -51,9 +51,9 @@ class TripCard extends StatelessWidget {
                         color: Colors.white,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.7),
+                            color: Colors.black.withOpacity(0.5),
                             offset: Offset(2, 2),
-                            blurRadius: 6,
+                            blurRadius: 4,
                           ),
                         ],
                       ),
@@ -74,9 +74,9 @@ class TripCard extends StatelessWidget {
                         color: Colors.white,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.7),
+                            color: Colors.black.withOpacity(0.5),
                             offset: Offset(2, 2),
-                            blurRadius: 6,
+                            blurRadius: 4,
                           ),
                         ],
                       ),
@@ -87,9 +87,9 @@ class TripCard extends StatelessWidget {
                         color: Colors.white,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.7),
+                            color: Colors.black.withOpacity(0.5),
                             offset: Offset(2, 2),
-                            blurRadius: 6,
+                            blurRadius: 4,
                           ),
                         ],
                       ),
@@ -143,9 +143,9 @@ class TripCard extends StatelessWidget {
                         fontSize: 18, // Increased font size for the amounts
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.7),
+                            color: Colors.black.withOpacity(0.5),
                             offset: Offset(2, 2),
-                            blurRadius: 6,
+                            blurRadius: 3,
                           ),
                         ],
                       ),
@@ -159,9 +159,9 @@ class TripCard extends StatelessWidget {
                         fontSize: 18, // Increased font size for the amounts
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.7),
+                            color: Colors.black.withOpacity(0.5),
                             offset: Offset(2, 2),
-                            blurRadius: 6,
+                            blurRadius: 3,
                           ),
                         ],
                       ),

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/trip_model.dart';
 
-
 class CreateTripPage extends StatefulWidget {
   @override
   _CreateTripPageState createState() => _CreateTripPageState();
@@ -29,7 +28,7 @@ class _CreateTripPageState extends State<CreateTripPage> {
     final String budget = _budgetController.text;
 
     if (_selectedDestination == null || budget.isEmpty || _startDateController.text.isEmpty || _endDateController.text.isEmpty) {
-      return; 
+      return;
     }
 
     final newTrip = Trip(
@@ -43,6 +42,7 @@ class _CreateTripPageState extends State<CreateTripPage> {
       imagePath: 'assets/images/qatar.jpeg',
       opacity: 0.5,
       status: 'new',
+      progress: 0.0,  // Initialize the progress as 0.0 for new trips
     );
 
     // Add the new trip to the provider

@@ -1,7 +1,8 @@
+import 'package:burgantevo/widgets/drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:burgantevo/pages/trip_card.dart'; 
-import 'create_trip_page.dart'; 
-import '../models/trip_model.dart'; 
+import 'package:burgantevo/pages/trip_card.dart';
+import 'create_trip_page.dart';
+import '../models/trip_model.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -9,7 +10,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
- 
   final List<Trip> trips = [
     Trip(
       destination: 'Qatar',
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
 
     if (newTrip != null) {
       setState(() {
-        trips.add(newTrip); 
+        trips.add(newTrip);
       });
     }
   }
@@ -89,76 +89,75 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, 
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.menu, color: Colors.black),
+          icon: const Icon(Icons.menu, color: Colors.black),
           onPressed: () {},
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Burgan Tevo',
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
             Transform.rotate(
-              angle: 11.14 / 2, 
-              child: Icon(Icons.airplanemode_active, color: Colors.blue),
+              angle: 11.14 / 2,
+              child: const Icon(Icons.airplanemode_active, color: Colors.blue),
             ),
           ],
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.headset_mic, color: Colors.black),
+            icon: const Icon(Icons.headset_mic, color: Colors.black),
             onPressed: () {},
           ),
         ],
       ),
+      drawer: const CustomDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Welcome back Reem!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
-
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Create Your Trip',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 CircleAvatar(
                   radius: 25,
-                  backgroundColor: Colors.orange, 
+                  backgroundColor: Colors.orange,
                   child: IconButton(
-                    icon: Icon(Icons.add, color: Colors.white),
-                    onPressed: _navigateToCreateTripPage, 
+                    icon: const Icon(Icons.add, color: Colors.white),
+                    onPressed: _navigateToCreateTripPage,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
-
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Current Trips',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
-            SizedBox(height: 10),
-
+            const SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
                 itemCount: trips.length,
                 itemBuilder: (context, index) {
                   return TripCard(
-                    trip: trips[index], 
+                    trip: trips[index],
                   );
                 },
               ),

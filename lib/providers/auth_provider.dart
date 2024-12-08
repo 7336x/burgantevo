@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:burgantevo/models/user.dart';
 import 'package:burgantevo/services/auth.dart';
 import 'package:burgantevo/services/client.dart';

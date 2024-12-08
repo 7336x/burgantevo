@@ -1,5 +1,7 @@
+import 'package:burgantevo/providers/tripsprovider.dart';
 import 'package:flutter/material.dart';
-import '../models/trip_model.dart'; 
+import 'package:provider/provider.dart';
+import '../models/trip_model.dart';
 
 class CreateTripPage extends StatefulWidget {
   @override
@@ -26,46 +28,41 @@ class _CreateTripPageState extends State<CreateTripPage> {
     final String budget = _budgetController.text;
 
     if (_selectedDestination == null || budget.isEmpty || _startDateController.text.isEmpty || _endDateController.text.isEmpty) {
-      return; 
+      return;
     }
 
     final newTrip = Trip(
       destination: _selectedDestination!,
-      from: 'KW',  
-      to: 'QT',    
+      from: 'KW',
+      to: 'QT',
       startDate: _startDateController.text,
       endDate: _endDateController.text,
       amount: budget,
-      totalAmount: budget, 
-      imagePath: 'assets/images/qatar.jpeg', 
+      totalAmount: budget,
+      imagePath: 'assets/images/qatar.jpeg',
       opacity: 0.5,
-      status: 'new', 
+      status: 'new',
+      progress: 0.0,  // Initialize the progress as 0.0 for new trips
     );
 
-    Navigator.pop(context, newTrip); 
+    // Add the new trip to the provider
+    Provider.of<TripsProvider>(context, listen: false).addTrip(newTrip);
+
+    // Go back to HomePage
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, 
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.only(top: 20), // Move title down
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Create Trip',
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
-              ),
-              SizedBox(width: 8),
-              Transform.rotate(
-                angle: 11.14 / 2, 
-                child: Icon(Icons.airplanemode_active, color: Colors.blue, size: 40), // Adjusted size
-              ),
-            ],
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Create Trip', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30)),
+            Icon(Icons.airplanemode_active, color: Colors.blue),
+          ],
         ),
         backgroundColor: Colors.white,
         elevation: 0,
@@ -79,14 +76,11 @@ class _CreateTripPageState extends State<CreateTripPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 40), // Add margin above the text inputs
             DropdownButtonFormField<String>(
               value: _selectedDestination,
               decoration: InputDecoration(
                 labelText: 'Choose your Destination',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10), // Rounded corners
-                ),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               ),
               items: destinations.map((String destination) {
                 return DropdownMenuItem<String>(
@@ -100,58 +94,39 @@ class _CreateTripPageState extends State<CreateTripPage> {
                 });
               },
             ),
-            SizedBox(height: 20), // Space between fields
-
+            SizedBox(height: 20),
             TextField(
               controller: _budgetController,
               decoration: InputDecoration(
                 labelText: 'Trip Budget',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10), // Rounded corners
-                ),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               ),
               keyboardType: TextInputType.number,
             ),
-            SizedBox(height: 20), // Space between fields
-
+            SizedBox(height: 20),
             TextField(
               controller: _startDateController,
               decoration: InputDecoration(
                 labelText: 'From',
                 hintText: 'Enter start date (e.g. 12 May 2025)',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10), // Rounded corners
-                ),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               ),
             ),
-            SizedBox(height: 20), // Space between fields
-
+            SizedBox(height: 20),
             TextField(
               controller: _endDateController,
               decoration: InputDecoration(
                 labelText: 'Until',
                 hintText: 'Enter end date (e.g. 15 May 2025)',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10), // Rounded corners
-                ),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               ),
             ),
-            SizedBox(height: 400),  // Space between fields
-
+            SizedBox(height: 400),
             Center(
               child: ElevatedButton(
                 onPressed: _saveTrip,
-                child: Text(
-                  'Create',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold , fontSize:  18), 
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, 
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20), 
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
+                child: Text('Create', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue, padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
               ),
             ),
           ],

@@ -42,13 +42,13 @@ class _CreateTripPageState extends State<CreateTripPage> {
       imagePath: 'assets/images/qatar.jpeg',
       opacity: 0.5,
       status: 'new',
-      progress: 0.0,  // Initialize the progress as 0.0 for new trips
+      // progress: 0.0,  
     );
 
-    // Add the new trip to the provider
+    
     Provider.of<TripsProvider>(context, listen: false).addTrip(newTrip);
 
-    // Go back to HomePage
+   
     Navigator.pop(context);
   }
 

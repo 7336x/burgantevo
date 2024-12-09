@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final tripsProvider = Provider.of<TripsProvider>(context); // Access the TripsProvider
+    final tripsProvider = Provider.of<TripsProvider>(context); 
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
                       );
 
                       if (newTrip != null) {
-                        tripsProvider.addTrip(newTrip); // Add the new trip to the provider
+                        tripsProvider.addTrip(newTrip); 
                       }
                     },
                   ),
@@ -86,13 +86,13 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
 
-            // Display trips dynamically from the TripsProvider
+            
             Expanded(
               child: ListView.builder(
                 itemCount: tripsProvider.trips.length,
                 itemBuilder: (context, index) {
                   return TripCard(
-                    trip: tripsProvider.trips[index],  // Pass the trip to the TripCard widget
+                    trip: tripsProvider.trips[index],  
                   );
                 },
               ),

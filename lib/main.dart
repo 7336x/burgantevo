@@ -28,7 +28,7 @@ class BurganTevoApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/sign-up',  // Change initialRoute to '/sign-up' to open SignUpPage by default
+      initialRoute: '/home',  // Set initialRoute to '/home' to open HomePage by default
       routes: {
         '/home': (context) => HomePage(),
         '/sign-in': (context) => SignInPage(),

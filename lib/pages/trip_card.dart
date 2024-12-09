@@ -1,6 +1,8 @@
+import 'package:burgantevo/dashed_line_painter.dart';
+import 'package:burgantevo/pages/TripDetailsPage.dart';
 import 'package:flutter/material.dart';
-import '../models/trip_model.dart';  
-import '../dashed_line_painter.dart'; 
+import '../models/trip_model.dart';
+
 
 class TripCard extends StatelessWidget {
   final Trip trip;
@@ -37,9 +39,9 @@ class TripCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.5),
+                            color: Colors.black.withOpacity(0.7),
                             offset: Offset(2, 2),
-                            blurRadius: 4,
+                            blurRadius: 6,
                           ),
                         ],
                       ),
@@ -51,16 +53,24 @@ class TripCard extends StatelessWidget {
                         color: Colors.white,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.5),
+                            color: Colors.black.withOpacity(0.7),
                             offset: Offset(2, 2),
-                            blurRadius: 4,
+                            blurRadius: 6,
                           ),
                         ],
                       ),
                     ),
                     IconButton(
                       icon: Icon(Icons.arrow_forward_ios, color: Colors.white),
-                      onPressed: () {}, 
+                      onPressed: () {
+                        
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TripDetailsPage(trip: trip),  
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -74,9 +84,9 @@ class TripCard extends StatelessWidget {
                         color: Colors.white,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.5),
+                            color: Colors.black.withOpacity(0.7),
                             offset: Offset(2, 2),
-                            blurRadius: 4,
+                            blurRadius: 6,
                           ),
                         ],
                       ),
@@ -87,9 +97,9 @@ class TripCard extends StatelessWidget {
                         color: Colors.white,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.5),
+                            color: Colors.black.withOpacity(0.7),
                             offset: Offset(2, 2),
-                            blurRadius: 4,
+                            blurRadius: 6,
                           ),
                         ],
                       ),
@@ -113,8 +123,6 @@ class TripCard extends StatelessWidget {
               ],
             ),
           ),
-
-          // Image Container
           Container(
             height: 150,
             decoration: BoxDecoration(
@@ -126,8 +134,6 @@ class TripCard extends StatelessWidget {
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
             ),
           ),
-
-          // Content Below Image
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -140,12 +146,12 @@ class TripCard extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.white, 
                         fontWeight: FontWeight.bold,
-                        fontSize: 18, // Increased font size for the amounts
+                        fontSize: 18,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.5),
+                            color: Colors.black.withOpacity(0.7),
                             offset: Offset(2, 2),
-                            blurRadius: 3,
+                            blurRadius: 6,
                           ),
                         ],
                       ),
@@ -156,12 +162,12 @@ class TripCard extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.white, 
                         fontWeight: FontWeight.bold,
-                        fontSize: 18, // Increased font size for the amounts
+                        fontSize: 18,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.5),
+                            color: Colors.black.withOpacity(0.7),
                             offset: Offset(2, 2),
-                            blurRadius: 3,
+                            blurRadius: 6,
                           ),
                         ],
                       ),
@@ -169,12 +175,10 @@ class TripCard extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 10),
-
-                // Progress Bar with Rounded Corners
                 Container(
                   height: 10,  
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),  // Rounded corners for the progress bar
+                    borderRadius: BorderRadius.circular(100),
                     color: Colors.white,
                   ),
                   child: LinearProgressIndicator(

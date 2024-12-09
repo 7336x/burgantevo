@@ -76,6 +76,7 @@ class SignUpPage extends StatelessWidget {
 
                   var user = context.read<AuthProvider>().user;
                   print("You are signed up as ${user!.username}");
+                  context.read<AuthProvider>().initAuth();s
                   GoRouter.of(context).go('/home');
                 } on DioException catch (e) {
                   if (e.response == null) return;
@@ -112,6 +113,7 @@ class SignUpPage extends StatelessWidget {
               ),
               onPressed: () {
                 // Navigate to SignInPage
+
                 GoRouter.of(context).go('/sign-in');
               },
               child: const Text(

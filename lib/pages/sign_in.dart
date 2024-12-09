@@ -1,9 +1,8 @@
-import 'package:burgantevo/pages/ForgotPasswordPage.dart';
-import 'package:flutter/material.dart';
 import 'package:burgantevo/providers/auth_provider.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
 
 class SignInPage extends StatelessWidget {
   SignInPage({super.key});
@@ -13,45 +12,35 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 2,
+      ),
+      resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 50),
-          Image.asset(
-            'assets/images/logo.png',
-            height: 250,
-            width: 250,
-          ),
           const SizedBox(height: 20),
           const Text(
-            "Burgan Tevo",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
-              color: Colors.black,
-            ),
-          ),
-          const SizedBox(height: 20),
-          const Text(
-            "Sign in",
+            "Sign In",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 24,
-              color: Colors.black,
+              color: Color.fromARGB(255, 4, 4, 4),
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextField(
               decoration: const InputDecoration(
                 hintText: 'Username',
                 border: OutlineInputBorder(),
-                hintStyle: TextStyle(color: Colors.black),
+                hintStyle: TextStyle(color: Colors.red),
               ),
               controller: usernameController,
-              style: const TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.red),
             ),
           ),
           const SizedBox(height: 20),
@@ -61,11 +50,11 @@ class SignInPage extends StatelessWidget {
               decoration: const InputDecoration(
                 hintText: 'Password',
                 border: OutlineInputBorder(),
-                hintStyle: TextStyle(color: Colors.black),
+                hintStyle: TextStyle(color: Colors.red),
               ),
               controller: passwordController,
               obscureText: true,
-              style: const TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.red),
             ),
           ),
           const SizedBox(height: 20),
@@ -73,10 +62,10 @@ class SignInPage extends StatelessWidget {
             width: 150,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Colors.grey,
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
               onPressed: () async {
@@ -88,7 +77,7 @@ class SignInPage extends StatelessWidget {
 
                   var user = context.read<AuthProvider>().user;
                   print("You are logged in as ${user!.username}");
-                  Navigator.pushReplacementNamed(context, '/home');
+                  GoRouter.of(context).go('/home');
                 } on DioException catch (e) {
                   if (e.response == null) return;
                   if (e.response!.data == null) return;
@@ -111,46 +100,35 @@ class SignInPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
-                  );
-                },
-                child: const Text(
-                  "Forget Password?",
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
-                  ),
+          // Button to navigate to SignUpPage
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue, // A different color for contrast
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/sign-up');
-                },
-                child: const Text(
-                  "Don't have an account? Sign Up",
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
-                  ),
+              onPressed: () {
+                // Navigate to SignUpPage
+                GoRouter.of(context).go('/sign-up');
+              },
+              child: const Text(
+                "Don't have an account? Sign Up",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ],
+            ),
           ),
           const SizedBox(height: 50),
+          Text(
+            context.read<AuthProvider>().user?.username ?? "Not Logged in",
+            style: const TextStyle(color: Colors.red),
+          ),
         ],
       ),
     );

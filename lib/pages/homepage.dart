@@ -1,17 +1,96 @@
-import 'package:burgantevo/providers/tripsprovider.dart';
-import 'package:flutter/material.dart';
 import 'package:burgantevo/widgets/drawer.dart';
+import 'package:flutter/material.dart';
 import 'package:burgantevo/pages/trip_card.dart';
+import 'package:go_router/go_router.dart';
 import 'create_trip_page.dart';
 import '../models/trip_model.dart';
-import 'package:provider/provider.dart';
 
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
-class HomePage extends StatelessWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final List<Trip> trips = [
+    Trip(
+      destination: 'Qatar',
+      from: 'KW',
+      to: 'QT',
+      startDate: '1/12/2024',
+      endDate: '1/12/2024',
+      amount: '400kwd',
+      totalAmount: '1000kwd',
+      imagePath: 'assets/images/qatar.jpeg',
+      opacity: 0.5,
+      status: 'new',
+    ),
+    Trip(
+      destination: 'Dubai',
+      from: 'KW',
+      to: 'UE',
+      startDate: '10/10/2023',
+      endDate: '10/10/2023',
+      amount: '850kwd',
+      totalAmount: '1000kwd',
+      imagePath: 'assets/images/qatar.jpeg',
+      opacity: 0.5,
+      status: 'finished',
+    ),
+    Trip(
+      destination: 'London',
+      from: 'KW',
+      to: 'LDN',
+      startDate: '15/10/2023',
+      endDate: '15/10/2023',
+      amount: '550kwd',
+      totalAmount: '800kwd',
+      imagePath: 'assets/images/qatar.jpeg',
+      opacity: 0.5,
+      status: 'finished',
+    ),
+    Trip(
+      destination: 'Paris',
+      from: 'KW',
+      to: 'PAR',
+      startDate: '2/12/2024',
+      endDate: '2/12/2024',
+      amount: '900kwd',
+      totalAmount: '1500kwd',
+      imagePath: 'assets/images/qatar.jpeg',
+      opacity: 0.5,
+      status: 'new',
+    ),
+    Trip(
+      destination: 'New York',
+      from: 'KW',
+      to: 'NYC',
+      startDate: '20/01/2025',
+      endDate: '20/01/2025',
+      amount: '2000kwd',
+      totalAmount: '2500kwd',
+      imagePath: 'assets/images/qatar.jpeg',
+      opacity: 0.5,
+      status: 'upcoming',
+    ),
+  ];
+
+  void _navigateToCreateTripPage() async {
+    final newTrip = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CreateTripPage()),
+    );
+
+    if (newTrip != null) {
+      setState(() {
+        trips.add(newTrip);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final tripsProvider = Provider.of<TripsProvider>(context); // Access the TripsProvider
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -24,14 +103,29 @@ class HomePage extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Burgan Tevo',
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
+// <<<<<<< abdulwahab
+//             const Text(
+//               'Burgan Tevo',
+//               style:
+//                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+//             ),
+//             Transform.rotate(
+//               angle: 11.14 / 2,
+//               child: const Icon(Icons.airplanemode_active, color: Colors.blue),
+//             ),
+// =======
+            const Text(
+              '  Burgan Tevo',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30),
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Transform.rotate(
               angle: 11.14 / 2,
-              child: Icon(Icons.airplanemode_active, color: Colors.blue, size: 40),
+              child: const Icon(Icons.airplanemode_active,
+                  color: Colors.blue, size: 40), // Adjusted size
             ),
           ],
         ),
@@ -65,15 +159,9 @@ class HomePage extends StatelessWidget {
                   backgroundColor: Colors.orange,
                   child: IconButton(
                     icon: const Icon(Icons.add, color: Colors.white),
-                    onPressed: () async {
-                      final newTrip = await Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => CreateTripPage()),
-                      );
-
-                      if (newTrip != null) {
-                        tripsProvider.addTrip(newTrip); // Add the new trip to the provider
-                      }
+                    onPressed: () {
+                      // Use GoRouter to navigate
+                      context.push('/create-trip');
                     },
                   ),
                 ),
@@ -85,14 +173,12 @@ class HomePage extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 10),
-
-            // Display trips dynamically from the TripsProvider
             Expanded(
               child: ListView.builder(
-                itemCount: tripsProvider.trips.length,
+                itemCount: trips.length,
                 itemBuilder: (context, index) {
                   return TripCard(
-                    trip: tripsProvider.trips[index],  // Pass the trip to the TripCard widget
+                    trip: trips[index],
                   );
                 },
               ),

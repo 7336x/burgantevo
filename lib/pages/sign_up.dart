@@ -1,6 +1,7 @@
 import 'package:burgantevo/providers/auth_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -11,45 +12,34 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 2,
+      ),
+      resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 50),
-          Image.asset(
-            'assets/images/logo.png', 
-            height: 250,
-            width: 250,
-          ),
-          const SizedBox(height: 20),
           const Text(
-            "Burgan Tevo",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
-              color: Colors.black,
-            ),
-          ),
-          const SizedBox(height: 20),
-          const Text(
-            "Sign up",
+            "Sign Up",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 24,
-              color: Colors.black,
+              color: Color.fromARGB(255, 4, 4, 4),
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextField(
               decoration: const InputDecoration(
                 hintText: 'Username',
                 border: OutlineInputBorder(),
-                hintStyle: TextStyle(color: Colors.black),
+                hintStyle: TextStyle(color: Colors.red),
               ),
               controller: usernameController,
-              style: const TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.red),
             ),
           ),
           const SizedBox(height: 20),
@@ -59,11 +49,11 @@ class SignUpPage extends StatelessWidget {
               decoration: const InputDecoration(
                 hintText: 'Password',
                 border: OutlineInputBorder(),
-                hintStyle: TextStyle(color: Colors.black),
+                hintStyle: TextStyle(color: Colors.red),
               ),
               controller: passwordController,
               obscureText: true,
-              style: const TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.red),
             ),
           ),
           const SizedBox(height: 20),
@@ -71,10 +61,10 @@ class SignUpPage extends StatelessWidget {
             width: 150,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Colors.grey,
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
               onPressed: () async {
@@ -86,7 +76,7 @@ class SignUpPage extends StatelessWidget {
 
                   var user = context.read<AuthProvider>().user;
                   print("You are signed up as ${user!.username}");
-                  Navigator.pushReplacementNamed(context, '/home');
+                  GoRouter.of(context).go('/home');
                 } on DioException catch (e) {
                   if (e.response == null) return;
                   if (e.response!.data == null) return;
@@ -109,38 +99,35 @@ class SignUpPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          
-          Center(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8, 
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Already have an account? ",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, '/sign-in');
-                    },
-                    child: const Text(
-                      "Sign In",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ),
-                ],
+          // Button to navigate to SignInPage
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue, // A different color for contrast
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () {
+                // Navigate to SignInPage
+                GoRouter.of(context).go('/sign-in');
+              },
+              child: const Text(
+                "Already have an account? Sign In",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
           const SizedBox(height: 50),
+          Text(
+            context.read<AuthProvider>().user?.username ?? "Not Logged in",
+            style: const TextStyle(color: Colors.red),
+          ),
         ],
       ),
     );

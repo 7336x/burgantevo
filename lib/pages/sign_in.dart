@@ -77,6 +77,7 @@ class SignInPage extends StatelessWidget {
 
                   var user = context.read<AuthProvider>().user;
                   print("You are logged in as ${user!.username}");
+                  context.read<AuthProvider>().initAuth();
                   GoRouter.of(context).go('/home');
                 } on DioException catch (e) {
                   if (e.response == null) return;

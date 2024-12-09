@@ -1,3 +1,4 @@
+import 'package:burgantevo/models/trip_model.dart';
 import 'package:dio/dio.dart';
 import 'client.dart'; // Import your global Dio client
 
@@ -31,5 +32,10 @@ class TripService {
       print("Error creating trip: $e");
       rethrow; // Forward the error to the caller
     }
+  }
+
+  Future<Response> getTrip() async {
+    final response = await dio.get('/trip');
+    return response;
   }
 }

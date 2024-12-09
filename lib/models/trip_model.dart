@@ -1,5 +1,3 @@
-
-
 class Trip {
   final String destination;
   final String from;
@@ -11,8 +9,9 @@ class Trip {
   final String imagePath;
   final double opacity;
   final String status;
+  final double progress;  // Add this line to define progress
 
-  // Constructor to initialize the Trip object
+  // Constructor
   Trip({
     required this.destination,
     required this.from,
@@ -24,37 +23,6 @@ class Trip {
     required this.imagePath,
     required this.opacity,
     required this.status,
+    this.progress = 0.0, // Initialize progress to 0.0 by default for new trips
   });
-
-  // constructor to create a Trip from a map
-  factory Trip.fromMap(Map<String, dynamic> map) {
-    return Trip(
-      destination: map['destination'],
-      from: map['from'],
-      to: map['to'],
-      startDate: map['startDate'],
-      endDate: map['endDate'],
-      amount: map['amount'],
-      totalAmount: map['totalAmount'],
-      imagePath: map['imagePath'],
-      opacity: map['opacity'],
-      status: map['status'],
-    );
-  }
-
- 
-  Map<String, dynamic> toMap() {
-    return {
-      'destination': destination,
-      'from': from,
-      'to': to,
-      'startDate': startDate,
-      'endDate': endDate,
-      'amount': amount,
-      'totalAmount': totalAmount,
-      'imagePath': imagePath,
-      'opacity': opacity,
-      'status': status,
-    };
-  }
 }

@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:burgantevo/pages/homepage.dart'; // Assuming HomePage is in this path
 import 'package:burgantevo/providers/auth_provider.dart';
 
-
 void main() {
   runApp(
     MultiProvider(
@@ -29,10 +28,10 @@ class BurganTevoApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/home',  
+      initialRoute: '/sign-up',  // Change initialRoute to '/sign-up' to open SignUpPage by default
       routes: {
-        '/home': (context) => HomePage(),  
-        '/sign-in': (context) => SignInPage(),  
+        '/home': (context) => HomePage(),
+        '/sign-in': (context) => SignInPage(),
         '/sign-up': (context) => SignUpPage(),
       },
     );

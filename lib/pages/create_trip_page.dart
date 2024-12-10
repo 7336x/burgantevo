@@ -24,33 +24,37 @@ class _CreateTripPageState extends State<CreateTripPage> {
     'New York'
   ];
 
-  void _saveTrip() {
-    final String budget = _budgetController.text;
+ void _saveTrip() {
+  final String budget = _budgetController.text;
 
-    if (_selectedDestination == null || budget.isEmpty || _startDateController.text.isEmpty || _endDateController.text.isEmpty) {
-      return;
-    }
-
-    final newTrip = Trip(
-      destination: _selectedDestination!,
-      from: 'KW',
-      to: 'QT',
-      startDate: _startDateController.text,
-      endDate: _endDateController.text,
-      amount: budget,
-      totalAmount: budget,
-      imagePath: 'assets/images/qatar.jpeg',
-      opacity: 0.5,
-      status: 'new',
-      // progress: 0.0,  
-    );
-
-    
-    Provider.of<TripsProvider>(context, listen: false).addTrip(newTrip);
-
-   
-    Navigator.pop(context);
+  if (_selectedDestination == null || budget.isEmpty || _startDateController.text.isEmpty || _endDateController.text.isEmpty) {
+    return;
   }
+
+  // Initialize spent amount to zero for a new trip
+  double spentAmount = 0.0; // spent amount is zero initially
+
+  // Create the new trip, adding "KWD" to the amount for display
+  final newTrip = Trip(
+    destination: _selectedDestination!,
+    from: 'KW',
+    to: 'QT',
+    startDate: _startDateController.text,
+    endDate: _endDateController.text,
+    amount: "$spentAmount KWD",  // Initially zero
+    totalAmount: "$budget KWD", // Display total budget with KWD
+    imagePath: 'assets/images/qatar.jpeg',  // Default image
+    opacity: 0.5,
+    status: 'new',  // Default status
+  );
+
+  // Add the new trip using the provider
+  Provider.of<TripsProvider>(context, listen: false).addTrip(newTrip);
+
+  // Close the page after saving
+  Navigator.pop(context);
+}
+
 
   @override
   Widget build(BuildContext context) {

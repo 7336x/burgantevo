@@ -8,16 +8,24 @@ class TripDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Calculate the spent amount dynamically
+    double totalExpenses = 0.0;
+
+    // Remove 'KWD' before parsing
+    double totalAmount = double.tryParse(trip.totalAmount.replaceAll('KWD', '').trim()) ?? 0.0;
+    double spentAmount = double.tryParse(trip.amount.replaceAll('KWD', '').trim()) ?? 0.0;
+
+    double progress = totalAmount > 0 ? spentAmount / totalAmount : 0.0;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Icon(Icons.arrow_back),
             SizedBox(width: 10),
             Text(
-              'Trip Deatils',
+              'Trip Details',
               style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
             ),
             SizedBox(width: 8),
@@ -36,7 +44,6 @@ class TripDetailsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
@@ -47,8 +54,6 @@ class TripDetailsPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-
-              
               Text(
                 'Destination: ${trip.destination}',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
@@ -59,25 +64,18 @@ class TripDetailsPage extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 10),
-
-              
               Text('Amount Spent: ${trip.amount}', style: TextStyle(fontSize: 16)),
               SizedBox(height: 10),
               Text('Total Amount: ${trip.totalAmount}', style: TextStyle(fontSize: 16)),
               SizedBox(height: 10),
               LinearProgressIndicator(
-                value: double.parse(trip.amount.replaceAll('kwd', '')) /
-                    double.parse(trip.totalAmount.replaceAll('kwd', '')),
+                value: progress,
                 backgroundColor: Colors.grey.shade300,
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
               ),
               SizedBox(height: 20),
-
-              
               Text('Expenses', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
               SizedBox(height: 10),
-
-              
               Container(
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(

@@ -51,18 +51,18 @@ class TripsProvider with ChangeNotifier {
       opacity: 0.5,
       status: 'new',
     ),
-    Trip(
-      destination: 'New York',
-      from: 'KW',
-      to: 'NYC',
-      startDate: '20/01/2025',
-      endDate: '20/01/2025',
-      amount: '2000kwd',
-      totalAmount: '2500kwd',
-      imagePath: 'assets/images/qatar.jpeg',
-      opacity: 0.5,
-      status: 'upcoming',
-    ),
+    // Trip(
+    //   destination: 'New York',
+    //   from: 'KW',
+    //   to: 'NYC',
+    //   startDate: '20/01/2025',
+    //   endDate: '20/01/2025',
+    //   amount: '2000kwd',
+    //   totalAmount: '2500kwd',
+    //   imagePath: 'assets/images/qatar.jpeg',
+    //   opacity: 0.5,
+    //   status: 'upcoming',
+    // ),
   ];
 
   List<Trip> get trips => _trips;

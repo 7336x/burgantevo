@@ -75,7 +75,7 @@ class SignInPage extends StatelessWidget {
                 style: const TextStyle(color: Colors.red),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             // Sign In button
             SizedBox(
               width: 150,

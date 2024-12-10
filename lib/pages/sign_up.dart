@@ -10,24 +10,41 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 2,
+        // foregroundColor: Colors.black,
+        // elevation: 2,
       ),
       resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
-            "Sign Up",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
-              color: Color.fromARGB(255, 4, 4, 4),
+           Image.asset(
+              'assets/images/logo.png', 
+              width: 300, 
+              height: 300,
             ),
-          ),
+            const SizedBox(height: 20),
+            const Text(
+              "Burgan Tevo",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 32,
+                color: Color.fromARGB(255, 4, 4, 4),
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              "Sign Up",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                color: Color.fromARGB(255, 4, 4, 4),
+              ),
+            ),
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -55,12 +72,12 @@ class SignUpPage extends StatelessWidget {
               style: const TextStyle(color: Colors.red),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 40),
           SizedBox(
             width: 150,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.grey,
+                backgroundColor: Colors.blue,
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -97,7 +114,7 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           
           Center(
             child: SizedBox(

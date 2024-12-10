@@ -25,8 +25,8 @@ class SignInPage extends StatelessWidget {
           children: [
             // Logo image in the center
             Image.asset(
-              'assets/images/logo.png', 
-              width: 300, 
+              'assets/images/logo.png',
+              width: 300,
               height: 300,
             ),
             const SizedBox(height: 20),
@@ -81,9 +81,8 @@ class SignInPage extends StatelessWidget {
             SizedBox(
               width: 150,
               child: ElevatedButton(
-                
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, 
+                  backgroundColor: Colors.blue,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -98,7 +97,7 @@ class SignInPage extends StatelessWidget {
 
                     var user = context.read<AuthProvider>().user;
                     print("You are logged in as ${user!.username}");
-                    Navigator.pushReplacementNamed(context, '/home');
+                    context.push('/home');
                   } on DioException catch (e) {
                     if (e.response == null) return;
                     if (e.response!.data == null) return;
@@ -121,32 +120,29 @@ class SignInPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-           
+
             SizedBox(
-              
               width: 150,
               child: TextButton(
                 style: TextButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
                 onPressed: () {
-                  
-                  Navigator.pushReplacementNamed(context, '/sign-up');
+                  context.push('/sign-up');
                 },
                 child: const Text(
-                  
                   "Don't have an account? Sign Up",
                   style: TextStyle(
-                    color: Colors.blue, 
+                    color: Colors.blue,
                     fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline, 
+                    decoration: TextDecoration.underline,
                   ),
-                   textAlign: TextAlign.center,
-             overflow: TextOverflow.visible, 
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.visible,
                 ),
               ),
             ),
-          
+
             const SizedBox(height: 50),
             Text(
               context.read<AuthProvider>().user?.username ?? "Not Logged in",

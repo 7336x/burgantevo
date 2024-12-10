@@ -11,7 +11,6 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -23,29 +22,29 @@ class SignUpPage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-           Image.asset(
-              'assets/images/logo.png', 
-              width: 300, 
-              height: 300,
+          Image.asset(
+            'assets/images/logo.png',
+            width: 300,
+            height: 300,
+          ),
+          const SizedBox(height: 20),
+          const Text(
+            "Burgan Tevo",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 32,
+              color: Color.fromARGB(255, 4, 4, 4),
             ),
-            const SizedBox(height: 20),
-            const Text(
-              "Burgan Tevo",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 32,
-                color: Color.fromARGB(255, 4, 4, 4),
-              ),
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            "Sign Up",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              color: Color.fromARGB(255, 4, 4, 4),
             ),
-            const SizedBox(height: 10),
-            const Text(
-              "Sign Up",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Color.fromARGB(255, 4, 4, 4),
-              ),
-            ),
+          ),
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -92,7 +91,8 @@ class SignUpPage extends StatelessWidget {
                       );
 
                   var user = context.read<AuthProvider>().user;
-                  print("You are signed up as ${user!.username}");
+
+                  //print("You are signed up as ${user!.username}");
                   context.read<AuthProvider>().initAuth();
                   GoRouter.of(context).go('/home');
                 } on DioException catch (e) {
@@ -117,10 +117,9 @@ class SignUpPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-          
           Center(
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8, 
+              width: MediaQuery.of(context).size.width * 0.8,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -133,8 +132,7 @@ class SignUpPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                       GoRouter.of(context).go('/sign-in');
-
+                      GoRouter.of(context).go('/sign-in');
                     },
                     child: const Text(
                       "Sign In",

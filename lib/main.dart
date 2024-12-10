@@ -55,7 +55,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()), 
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => TripsProvider()),
       ],
       child: const BurganTevoApp(),
@@ -85,7 +85,7 @@ final GoRouter _router = GoRouter(
   routes: [
     GoRoute(
       path: '/home',
-      builder: (context, state) => const HomePage(),
+      builder: (context, state) => HomePage(),
     ),
     GoRoute(
       path: '/sign-in',

@@ -19,7 +19,7 @@ class TripService {
           "budget": budget,
         },
       );
-
+      print(response.statusCode);
       // Check for successful response
       if (response.statusCode == 200 || response.statusCode == 201) {
         print("Trip created successfully: ${response.data}");

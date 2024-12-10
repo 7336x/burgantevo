@@ -1,3 +1,4 @@
+import 'package:burgantevo/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:burgantevo/providers/tripsprovider.dart';
 import 'package:burgantevo/widgets/drawer.dart';
@@ -203,10 +204,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+    context.read<AuthProvider>().initAuth();
     return Scaffold(
       key: _scaffoldKey, // Assign the scaffold key here
       backgroundColor: Colors.white,

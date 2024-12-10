@@ -3,35 +3,32 @@ import '../models/trip_model.dart';
 
 class TripDetailsPage extends StatelessWidget {
   final Trip trip;
+  var totalAmount = 1000;
 
   TripDetailsPage({required this.trip});
 
   @override
   Widget build(BuildContext context) {
-    // Calculate the spent amount dynamically
-    double totalExpenses = 0.0;
-
-    // Remove 'KWD' before parsing
-    double totalAmount = double.tryParse(trip.totalAmount.replaceAll('KWD', '').trim()) ?? 0.0;
-    double spentAmount = double.tryParse(trip.amount.replaceAll('KWD', '').trim()) ?? 0.0;
-
-    double progress = totalAmount > 0 ? spentAmount / totalAmount : 0.0;
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Icon(Icons.arrow_back),
             SizedBox(width: 10),
             Text(
-              'Trip Details',
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
+              'Trip Deatils',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30),
             ),
             SizedBox(width: 8),
             Transform.rotate(
               angle: 11.14 / 2,
-              child: Icon(Icons.airplanemode_active, color: Colors.blue, size: 40),
+              child:
+                  Icon(Icons.airplanemode_active, color: Colors.blue, size: 40),
             ),
           ],
         ),
@@ -47,13 +44,15 @@ class TripDetailsPage extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
-                  trip.imagePath,
+                  'assets/images/qatar.jpeg',
+                  //TODO trip.imagePath,
                   height: 250,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),
               SizedBox(height: 20),
+
               Text(
                 'Destination: ${trip.destination}',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
@@ -64,26 +63,34 @@ class TripDetailsPage extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 10),
-              Text('Amount Spent: ${trip.amount}', style: TextStyle(fontSize: 16)),
+
+              Text('Amount Spent: ${trip.budget}',
+                  style: TextStyle(fontSize: 16)),
               SizedBox(height: 10),
-              Text('Total Amount: ${trip.totalAmount}', style: TextStyle(fontSize: 16)),
+              // TOOD trip.totalAmount
+              Text('Total Amount: ${totalAmount}',
+                  style: TextStyle(fontSize: 16)),
               SizedBox(height: 10),
               LinearProgressIndicator(
-                value: progress,
+                value: trip.budget / totalAmount,
                 backgroundColor: Colors.grey.shade300,
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
               ),
               SizedBox(height: 20),
-              Text('Expenses', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+
+              Text('Expenses',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
               SizedBox(height: 10),
+
               Container(
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Colors.orange.withOpacity(0.1),
-                  border: Border.all(color: Colors.orange.withOpacity(0.5), width: 1),
+                  border: Border.all(
+                      color: Colors.orange.withOpacity(0.5), width: 1),
                 ),
-                height: 370, 
+                height: 370,
                 child: SingleChildScrollView(
                   child: Column(
                     children: [

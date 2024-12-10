@@ -66,26 +66,26 @@ class CustomDrawer extends StatelessWidget {
                     Navigator.pushNamed(context, '/home'); 
                   },
                 ),
-                _buildDrawerItem(
-                  context,
-                  icon: Icons.login,
-                  label: 'Sign In',
-                  onTap: () {
-                    Navigator.pop(context); 
-                    Navigator.pushNamed(
-                        context, '/sign-in'); 
-                  },
-                ),
-                _buildDrawerItem(
-                  context,
-                  icon: Icons.app_registration,
-                  label: 'Sign Up',
-                  onTap: () {
-                    Navigator.pop(context); 
-                    Navigator.pushNamed(
-                        context, '/sign-up'); 
-                  },
-                ),
+                // _buildDrawerItem(
+                //   context,
+                //   icon: Icons.login,
+                //   label: 'Sign In',
+                //   onTap: () {
+                //     Navigator.pop(context); 
+                //     Navigator.pushNamed(
+                //         context, '/sign-in'); 
+                //   },
+                // ),
+                // _buildDrawerItem(
+                //   context,
+                //   icon: Icons.app_registration,
+                //   label: 'Sign Up',
+                //   onTap: () {
+                //     Navigator.pop(context); 
+                //     Navigator.pushNamed(
+                //         context, '/sign-up'); 
+                //   },
+                // ),
                 _buildDrawerItem(
                   context,
                   icon: Icons.logout,

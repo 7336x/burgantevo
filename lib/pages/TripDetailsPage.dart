@@ -9,15 +9,22 @@ class TripDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.arrow_back),
+            // Icon(Icons.arrow_back),
             SizedBox(width: 10),
-            Text("Trip Details"),
-            SizedBox(width: 10),
-            Icon(Icons.airplanemode_active),
+            Text(
+              'Trip Deatils',
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+            SizedBox(width: 8),
+            Transform.rotate(
+              angle: 11.14 / 2,
+              child: Icon(Icons.airplanemode_active, color: Colors.blue, size: 40),
+            ),
           ],
         ),
         backgroundColor: Colors.white,

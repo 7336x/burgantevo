@@ -25,7 +25,7 @@ class CustomDrawer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'DishCraft',
+                      'Burgan Tevo',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,

@@ -1,25 +1,30 @@
-import 'package:burgantevo/providers/tripsprovider.dart';
 import 'package:flutter/material.dart';
+import 'package:burgantevo/providers/tripsprovider.dart';
 import 'package:burgantevo/widgets/drawer.dart';
 import 'package:burgantevo/pages/trip_card.dart';
 import 'create_trip_page.dart';
 import '../models/trip_model.dart';
 import 'package:provider/provider.dart';
 
-
 class HomePage extends StatelessWidget {
+  // Create a GlobalKey for Scaffold
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     final tripsProvider = Provider.of<TripsProvider>(context); 
 
     return Scaffold(
+      key: _scaffoldKey, // Assign the scaffold key here
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.menu, color: Colors.black),
-          onPressed: () {},
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer(); // Open the drawer
+          },
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -42,7 +47,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      drawer: const CustomDrawer(),
+      drawer: const CustomDrawer(), // Drawer remains the same
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -86,7 +91,6 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
 
-            
             Expanded(
               child: ListView.builder(
                 itemCount: tripsProvider.trips.length,

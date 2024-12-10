@@ -60,8 +60,15 @@ class _CreateTripPageState extends State<CreateTripPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Create Trip', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30)),
-            Icon(Icons.airplanemode_active, color: Colors.blue),
+           Text(
+              'Create Trip',
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+            SizedBox(width: 8),
+            Transform.rotate(
+              angle: 11.14 / 2,
+              child: Icon(Icons.airplanemode_active, color: Colors.blue, size: 40),
+            ),
           ],
         ),
         backgroundColor: Colors.white,

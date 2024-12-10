@@ -254,7 +254,7 @@ class HomePage extends StatelessWidget {
                             child: IconButton(
                               icon: const Icon(Icons.add, color: Colors.white),
                               onPressed: () {
-                                Navigator.pushNamed(context, '/create-trip');
+                                context.push('/create-trip');
                               },
                             ),
                           ),

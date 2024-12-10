@@ -38,4 +38,9 @@ class TripService {
     final response = await dio.get('/trip');
     return response;
   }
+
+  Future<Response> getExpenses() async {
+    final response = await dio.get('/trip/expenses');
+    return response;
+  }
 }

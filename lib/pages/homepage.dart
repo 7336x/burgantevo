@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:burgantevo/providers/tripsprovider.dart';
 import 'package:burgantevo/widgets/drawer.dart';
 import 'package:flutter/material.dart';
@@ -207,13 +208,16 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey, // Assign the scaffold key here
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: const Text(
-          'Burgan Tevo',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        leading: IconButton(
+          icon: const Icon(Icons.menu, color: Colors.black),
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer(); // Open the drawer
+          },
         ),
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.black),

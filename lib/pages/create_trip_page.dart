@@ -39,7 +39,6 @@ class CreateTripPageState extends State<CreateTripPage> {
     //   );
     //   return;
     // }
-
     // // Create the trip using the TripsProvider and API
     await Provider.of<TripsProvider>(context, listen: false).createTrip(
       destination: destinationController.text,
@@ -68,16 +67,15 @@ class CreateTripPageState extends State<CreateTripPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+           Text(
               'Create Trip',
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-              ),
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
             ),
-            const SizedBox(width: 5),
-            const Icon(Icons.airplanemode_active, color: Colors.blue),
+            SizedBox(width: 8),
+            Transform.rotate(
+              angle: 11.14 / 2,
+              child: Icon(Icons.airplanemode_active, color: Colors.blue, size: 40),
+            ),
           ],
         ),
         backgroundColor: Colors.white,

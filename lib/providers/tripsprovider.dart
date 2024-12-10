@@ -1,74 +1,58 @@
+import 'package:burgantevo/models/trip_model.dart';
+import 'package:burgantevo/services/trip_service.dart';
 import 'package:flutter/material.dart';
-import '../models/trip_model.dart';
 
-class TripsProvider with ChangeNotifier {
-  List<Trip> _trips = [
-    Trip(
-      destination: 'Qatar',
-      from: 'KW',
-      to: 'QT',
-      startDate: '1/12/2024',
-      endDate: '1/12/2024',
-      amount: '400kwd',
-      totalAmount: '1000kwd',
-      imagePath: 'assets/images/qatar.jpeg',
-      opacity: 0.5,
-      status: 'new',
-    ),
-    Trip(
-      destination: 'Dubai',
-      from: 'KW',
-      to: 'UE',
-      startDate: '10/10/2023',
-      endDate: '10/10/2023',
-      amount: '850kwd',
-      totalAmount: '1000kwd',
-      imagePath: 'assets/images/qatar.jpeg',
-      opacity: 0.5,
-      status: 'finished',
-    ),
-    Trip(
-      destination: 'London',
-      from: 'KW',
-      to: 'LDN',
-      startDate: '15/10/2023',
-      endDate: '15/10/2023',
-      amount: '550kwd',
-      totalAmount: '800kwd',
-      imagePath: 'assets/images/qatar.jpeg',
-      opacity: 0.5,
-      status: 'finished',
-    ),
-    Trip(
-      destination: 'Paris',
-      from: 'KW',
-      to: 'PAR',
-      startDate: '2/12/2024',
-      endDate: '2/12/2024',
-      amount: '900kwd',
-      totalAmount: '1500kwd',
-      imagePath: 'assets/images/qatar.jpeg',
-      opacity: 0.5,
-      status: 'new',
-    ),
-    Trip(
-      destination: 'New York',
-      from: 'KW',
-      to: 'NYC',
-      startDate: '20/01/2025',
-      endDate: '20/01/2025',
-      amount: '2000kwd',
-      totalAmount: '2500kwd',
-      imagePath: 'assets/images/qatar.jpeg',
-      opacity: 0.5,
-      status: 'upcoming',
-    ),
-  ];
+class TripsProvider extends ChangeNotifier {
+  List<Trip> destinations = [];
+  bool isLoading = false;
 
-  List<Trip> get trips => _trips;
+  // Fetch trips from the API
+  Future<void> getTrips() async {
+    try {
+      isLoading = true;
+      //notifyListeners();
 
-  void addTrip(Trip trip) {
-    _trips.add(trip);
-    notifyListeners(); // Notify listeners when the list is updated
+      // Call the TripService to fetch trips
+      final response = await TripService().getTrip();
+
+      // Assuming response.data contains a list of trips
+      if (response.statusCode == 200 && response.data != null) {
+        destinations = (response.data as List)
+            .map((tripData) => Trip.fromMap(tripData))
+            .toList();
+
+        print("Trips fetched successfully: ${destinations.length}");
+      }
+    } catch (e) {
+      print("Error fetching trips: $e");
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  // Create a new trip via the API
+  Future<void> createTrip({
+    required String destination,
+    required String startDate,
+    required String endDate,
+    required double budget,
+  }) async {
+    try {
+      final response = await TripService().createTrip(
+        destination: destination,
+        startDate: startDate,
+        endDate: endDate,
+        budget: budget,
+      );
+
+      // Add the newly created trip to the list
+      destinations.add(Trip.fromMap(response));
+      notifyListeners();
+
+      print("Trip created and added successfully");
+    } catch (e) {
+      print("Error creating trip: $e");
+    }
   }
 }

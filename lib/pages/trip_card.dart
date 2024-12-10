@@ -3,7 +3,6 @@ import 'package:burgantevo/pages/TripDetailsPage.dart';
 import 'package:flutter/material.dart';
 import '../models/trip_model.dart';
 
-
 class TripCard extends StatelessWidget {
   final Trip trip;
 
@@ -12,11 +11,15 @@ class TripCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: Colors.orange.withOpacity(0.3),
-        border: Border.all(color: Colors.orange.withOpacity(0.5), width: 1),
+      child: Card(
+        child: Column(
+          children: [
+            Text(trip.destination),
+            Text(trip.startDate),
+            Text(trip.endDate),
+            Text(trip.budget as String)
+          ],
+        ),
       ),
       child: Column(
         children: [

@@ -3,15 +3,15 @@ import 'package:burgantevo/pages/sign_up.dart';
 import 'package:burgantevo/providers/tripsprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:burgantevo/pages/homepage.dart'; // Assuming HomePage is in this path
+import 'package:burgantevo/pages/homepage.dart'; 
 import 'package:burgantevo/providers/auth_provider.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()), // Your auth provider
-        ChangeNotifierProvider(create: (_) => TripsProvider()), // Your trips provider
+        ChangeNotifierProvider(create: (_) => AuthProvider()), 
+        ChangeNotifierProvider(create: (_) => TripsProvider()),
       ],
       child: BurganTevoApp(),
     ),
@@ -28,7 +28,7 @@ class BurganTevoApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/home',  // Set initialRoute to '/home' to open HomePage by default
+      initialRoute: '/home',  
       routes: {
         '/home': (context) => HomePage(),
         '/sign-in': (context) => SignInPage(),

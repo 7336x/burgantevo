@@ -310,7 +310,7 @@ class HomePage extends StatelessWidget {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(12),
                                       ),
-                                      color: Colors.orange,
+                                      color: Color.fromRGBO(255, 140, 0, 0.7),
                                       child: Padding(
                                         padding: const EdgeInsets.all(16.0),
                                         child: Column(
@@ -405,17 +405,17 @@ class HomePage extends StatelessWidget {
                                             ),
                                             SizedBox(height: 10),
                                             // Progress Bar
-                                            Container(
-                                              height: 12,
-                                              child: LinearProgressIndicator(
-                                                value: 0.0,
-                                                backgroundColor:
-                                                    Colors.grey.shade300,
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(Colors.blue),
-                                              ),
-                                            ),
+                                            // Container(
+                                            //   height: 12,
+                                            //   child: LinearProgressIndicator(
+                                            //     value: 0.0,
+                                            //     backgroundColor:
+                                            //         Colors.grey.shade300,
+                                            //     valueColor:
+                                            //         AlwaysStoppedAnimation<
+                                            //             Color>(Colors.blue),
+                                            //   ),
+                                            // ),
                                           ],
                                         ),
                                       ),

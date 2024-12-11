@@ -278,7 +278,34 @@ class AIAnalysisScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("AI Trip Analysis")),
+       backgroundColor: Colors.white,
+      // appBar: AppBar(title: Text("AI Trip Analysis")),
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'AI Trip Analysis',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30),
+            ),
+            SizedBox(width: 8),
+            Transform.rotate(
+              angle: 11.14 / 2,
+              child:
+                  Icon(Icons.airplanemode_active, color: Colors.blue, size: 40),
+            ),
+          ],
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
       body: FutureBuilder<Map<String, dynamic>>(
         future: fetchAnalysis(),
         builder: (context, snapshot) {

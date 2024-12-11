@@ -12,13 +12,20 @@ class CustomDrawer extends StatelessWidget {
           // Header Section
           Container(
             padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-            color: const Color.fromARGB(255, 230, 226, 221),
-            child: const Row(
+              color: const Color.fromARGB(255, 56, 155, 255),
+            child: Row(
               children: [
                 CircleAvatar(
                   radius: 40,
                   backgroundColor: Colors.white,
-                  child: Icon(Icons.person, size: 40, color: Colors.grey),
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/images/logo.png', 
+                      width: 80, 
+                      height: 85,
+                      fit: BoxFit.cover, 
+                    ),
+                  ),
                 ),
                 SizedBox(width: 20),
                 Column(
@@ -27,6 +34,7 @@ class CustomDrawer extends StatelessWidget {
                     Text(
                       'Burgan Tevo',
                       style: TextStyle(
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
@@ -35,7 +43,7 @@ class CustomDrawer extends StatelessWidget {
                     Text(
                       'Welcome!',
                       style: TextStyle(
-                        color: Colors.grey,
+                        color: Colors.white,
                         fontSize: 14,
                       ),
                     ),
@@ -45,7 +53,7 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          // Menu Items
+          
           Expanded(
             child: ListView(
               children: [
@@ -54,38 +62,38 @@ class CustomDrawer extends StatelessWidget {
                   icon: Icons.home,
                   label: 'Home',
                   onTap: () {
-                    Navigator.pop(context); // Close drawer
-                    Navigator.pushNamed(context, '/home'); // Navigate to Home
+                    Navigator.pop(context); 
+                    Navigator.pushNamed(context, '/home'); 
                   },
                 ),
-                _buildDrawerItem(
-                  context,
-                  icon: Icons.login,
-                  label: 'Sign In',
-                  onTap: () {
-                    Navigator.pop(context); // Close drawer
-                    Navigator.pushNamed(
-                        context, '/sign-in'); // Navigate to Sign In
-                  },
-                ),
-                _buildDrawerItem(
-                  context,
-                  icon: Icons.app_registration,
-                  label: 'Sign Up',
-                  onTap: () {
-                    Navigator.pop(context); // Close drawer
-                    Navigator.pushNamed(
-                        context, '/sign-up'); // Navigate to Sign Up
-                  },
-                ),
+                // _buildDrawerItem(
+                //   context,
+                //   icon: Icons.login,
+                //   label: 'Sign In',
+                //   onTap: () {
+                //     Navigator.pop(context); 
+                //     Navigator.pushNamed(
+                //         context, '/sign-in'); 
+                //   },
+                // ),
+                // _buildDrawerItem(
+                //   context,
+                //   icon: Icons.app_registration,
+                //   label: 'Sign Up',
+                //   onTap: () {
+                //     Navigator.pop(context); 
+                //     Navigator.pushNamed(
+                //         context, '/sign-up'); 
+                //   },
+                // ),
                 _buildDrawerItem(
                   context,
                   icon: Icons.logout,
                   label: 'Sign Out',
                   onTap: () {
-                    Navigator.pop(context); // Close drawer
+                    Navigator.pop(context); 
                     Navigator.pushNamed(context,
-                        '/sign-out'); // Navigate to Sign In after sign-out
+                        '/sign-out'); 
                   },
                 ),
               ],
@@ -103,7 +111,7 @@ class CustomDrawer extends StatelessWidget {
     required VoidCallback onTap,
   }) {
     return ListTile(
-      leading: Icon(icon, color: const Color.fromARGB(255, 219, 7, 7)),
+      leading: Icon(icon, color: Colors.orange), 
       title: Text(
         label,
         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),

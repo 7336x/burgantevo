@@ -67,6 +67,7 @@ class CreateTripPageState extends State<CreateTripPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            
            Text(
               'Create Trip',
               style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
@@ -89,8 +90,13 @@ class CreateTripPageState extends State<CreateTripPage> {
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+                  Image.asset(
+              'assets/images/designlogo.png',
+              width: 400,
+              height: 400,
+            ),
               // Destination Input as a TextField
               TextField(
                 controller: destinationController,
@@ -141,7 +147,7 @@ class CreateTripPageState extends State<CreateTripPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 100),
 
               // Submit Button
               Center(

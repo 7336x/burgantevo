@@ -77,7 +77,7 @@ class SignUpPage extends StatelessWidget {
             width: 150,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.grey,
+                backgroundColor: Colors.blue,
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -94,7 +94,8 @@ class SignUpPage extends StatelessWidget {
 
                   //print("You are signed up as ${user!.username}");
                   context.read<AuthProvider>().initAuth();
-                  GoRouter.of(context).go('/home');
+                  // GoRouter.of(context).go('/home');
+                  context.go('/home');
                 } on DioException catch (e) {
                   if (e.response == null) return;
                   if (e.response!.data == null) return;

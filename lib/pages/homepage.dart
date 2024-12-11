@@ -1,3 +1,4 @@
+import 'package:burgantevo/dashed_line_painter.dart';
 import 'package:burgantevo/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:burgantevo/providers/tripsprovider.dart';
@@ -213,6 +214,20 @@ class HomePage extends StatelessWidget {
       key: _scaffoldKey, // Assign the scaffold key here
       backgroundColor: Colors.white,
       appBar: AppBar(
+          title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+           Text(
+              'Burgan Tevo',
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+            SizedBox(width: 8),
+            Transform.rotate(
+              angle: 11.14 / 2,
+              child: Icon(Icons.airplanemode_active, color: Colors.blue, size: 40),
+            ),
+          ],
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
@@ -250,7 +265,7 @@ class HomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Your Trips',
+                            'Create Your Trips',
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.w600),
                           ),
@@ -275,32 +290,115 @@ class HomePage extends StatelessWidget {
                                   style: TextStyle(fontSize: 16),
                                 ),
                               )
-                            : ListView.builder(
-                                itemCount: provider.destinations.length,
-                                itemBuilder: (context, index) {
-                                  final trip = provider.destinations[index];
-                                  return Card(
-                                    elevation: 3,
-                                    margin: const EdgeInsets.symmetric(
-                                        vertical: 8.0),
-                                    child: ListTile(
-                                      title: Text(trip.destination),
-                                      subtitle: Text(
-                                          "${trip.startDate} - ${trip.endDate}"),
-                                      trailing: Text(
-                                        "\$${trip.budget}",
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      leading: const Icon(
-                                          Icons.airplanemode_active,
-                                          color: Colors.blue),
-                                    ),
-                                  );
-                                },
-                              ),
+                            :ListView.builder(
+  itemCount: provider.destinations.length,
+  itemBuilder: (context, index) {
+    final trip = provider.destinations[index];
+    return Card(
+      elevation: 10,
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12), 
+      ),
+      color: Colors.orange,  
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            
+            Text(
+              trip.destination,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Colors.white, 
+                shadows: [
+                  Shadow(
+                    color: Colors.black.withOpacity(0.7),
+                    offset: Offset(2, 2),
+                    blurRadius: 6,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 5),
+            Text(
+              "${trip.startDate} - ${trip.endDate}",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white, 
+                shadows: [
+                  Shadow(
+                    color: Colors.black.withOpacity(0.7),
+                    offset: Offset(2, 2),
+                    blurRadius: 6,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+
+            // Dashed Line and Airplane Icon
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                CustomPaint(
+                  size: Size(double.infinity, 30),
+                  painter: DashedLinePainter(),  
+                ),
+                Transform.rotate(
+                  angle: 15.7 / 2,
+                  child: Icon(Icons.airplanemode_active, color: Colors.white, size: 40),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+
+            
+               ClipRRect(
+              borderRadius: BorderRadius.circular(12),  
+              child: Image.asset(
+                'assets/images/qatar.jpeg', 
+                height: 150,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 10),
+
+           
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "${trip.budget} KWD",  
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.white,  
+                    shadows: [
+                      Shadow(
+                        color: Colors.black.withOpacity(0.7),
+                        offset: Offset(2, 2),
+                        blurRadius: 6,
                       ),
                     ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+
+            // Progress Bar 
+            Container(
+              height: 12, 
+              child: LinearProgressIndicator(
+                value: 0.0, 
+                backgroundColor: Colors.grey.shade300,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                    )) ] ) ));
+               } ))],
                   ),
                 );
               },

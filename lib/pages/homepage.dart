@@ -373,7 +373,7 @@ class HomePage extends StatelessWidget {
                                               borderRadius:
                                                   BorderRadius.circular(12),
                                               child: Image.asset(
-                                                'assets/images/qatar.jpeg',
+                                                'images/default.jpg',
                                                 height: 150,
                                                 width: double.infinity,
                                                 fit: BoxFit.cover,
@@ -434,4 +434,5 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}
+} 
+ 

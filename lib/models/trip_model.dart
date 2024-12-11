@@ -61,6 +61,7 @@ class Trip {
   final String startDate;
   final String endDate;
   final double budget;
+  
 
   Trip({
     required this.id, // Add the id field to the constructor
@@ -68,6 +69,7 @@ class Trip {
     required this.startDate,
     required this.endDate,
     required this.budget,
+    
   });
 
   factory Trip.fromMap(Map<String, dynamic> map) {
@@ -77,6 +79,7 @@ class Trip {
       startDate: map['start_date'],
       endDate: map['end_date'],
       budget: map['budget'].toDouble(),
+      
     );
   }
 
@@ -87,6 +90,7 @@ class Trip {
       'start_date': startDate,
       'end_date': endDate,
       'budget': budget,
+      
     };
   }
 }

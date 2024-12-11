@@ -1,5 +1,6 @@
 import 'package:burgantevo/dashed_line_painter.dart';
 import 'package:burgantevo/pages/TripDetailsPage.dart';
+import 'package:burgantevo/widgets/expenses_dropdown.dart';
 import 'package:flutter/material.dart';
 import '../models/trip_model.dart';
 
@@ -189,6 +190,9 @@ class TripCard extends StatelessWidget {
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
                   ),
                 ),
+                SizedBox(height: 10),
+                ExpensesDropdown(
+                    tripId: trip.id), // Add the ExpensesDropdown here
               ],
             ),
           ),

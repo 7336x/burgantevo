@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:burgantevo/providers/tripsprovider.dart';
 import 'package:burgantevo/widgets/drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:burgantevo/pages/trip_card.dart';
+import 'package:burgantevo/widgets/trip_card.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'create_trip_page.dart';

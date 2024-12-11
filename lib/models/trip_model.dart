@@ -56,12 +56,14 @@
 //   }
 // }
 class Trip {
+  final int id; // Add the id field
   final String destination;
   final String startDate;
   final String endDate;
   final double budget;
 
   Trip({
+    required this.id, // Add the id field to the constructor
     required this.destination,
     required this.startDate,
     required this.endDate,
@@ -70,10 +72,21 @@ class Trip {
 
   factory Trip.fromMap(Map<String, dynamic> map) {
     return Trip(
+      id: map['id'], // Add the id field to the factory constructor
       destination: map['destination'],
       startDate: map['start_date'],
       endDate: map['end_date'],
       budget: map['budget'].toDouble(),
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id, // Add the id field to the toMap method
+      'destination': destination,
+      'start_date': startDate,
+      'end_date': endDate,
+      'budget': budget,
+    };
   }
 }

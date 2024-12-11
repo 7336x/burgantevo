@@ -67,15 +67,18 @@ class CreateTripPageState extends State<CreateTripPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            
-           Text(
+            Text(
               'Create Trip',
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30),
             ),
             SizedBox(width: 8),
             Transform.rotate(
               angle: 11.14 / 2,
-              child: Icon(Icons.airplanemode_active, color: Colors.blue, size: 40),
+              child:
+                  Icon(Icons.airplanemode_active, color: Colors.blue, size: 40),
             ),
           ],
         ),
@@ -92,11 +95,11 @@ class CreateTripPageState extends State<CreateTripPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-                  Image.asset(
-              'assets/images/designlogo.png',
-              width: 400,
-              height: 400,
-            ),
+              Image.asset(
+                'assets/images/designlogo.png',
+                width: 400,
+                height: 400,
+              ),
               // Destination Input as a TextField
               TextField(
                 controller: destinationController,
@@ -147,7 +150,7 @@ class CreateTripPageState extends State<CreateTripPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 100),
+              const SizedBox(height: 25),
 
               // Submit Button
               Center(

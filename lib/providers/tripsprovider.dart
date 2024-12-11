@@ -17,11 +17,13 @@ class TripsProvider extends ChangeNotifier {
 
       // Assuming response.data contains a list of trips
       if (response.statusCode == 200 && response.data != null) {
+        print("Response: ${response.data}");
+
         destinations = (response.data as List)
             .map((tripData) => Trip.fromMap(tripData))
             .toList();
 
-        print("Trips fetched successfully: ${destinations.length}");
+        // print("Trips fetched successfully: ${destinations}");
       }
     } catch (e) {
       print("Error fetching trips: $e");

@@ -1,4 +1,5 @@
 import 'package:burgantevo/models/expenses_model.dart';
+import 'package:burgantevo/models/expenses_model.dart';
 import 'package:dio/dio.dart';
 import 'client.dart'; // Your global Dio client configuration
 
@@ -8,9 +9,9 @@ class ExpenseService {
   ExpenseService({required this.dio});
 
   // Fetch expenses for a specific trip
-  Future<List<Expense>> getExpenses(int tripId) async {
+  Future<List<Expense>> getExpenses(String tripId) async {
     try {
-      final response = await dio.get('/trip/$tripId/expenses');
+      final response = await dio.get('/trip/expenses/$tripId');
 
       if (response.statusCode == 200) {
         // Map JSON to a List of Expense objects

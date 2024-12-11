@@ -56,7 +56,7 @@
 //   }
 // }
 class Trip {
-  final int id; // Add the id field
+  final String id; // Add the id field
   final String destination;
   final String startDate;
   final String endDate;
@@ -72,7 +72,7 @@ class Trip {
 
   factory Trip.fromMap(Map<String, dynamic> map) {
     return Trip(
-      id: map['id'], // Add the id field to the factory constructor
+      id: map['_id'], // Add the id field to the factory constructor
       destination: map['destination'],
       startDate: map['start_date'],
       endDate: map['end_date'],

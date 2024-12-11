@@ -41,8 +41,12 @@
 //     );
 //   }
 // }
+import 'package:burgantevo/models/trip_model.dart';
+import 'package:burgantevo/pages/ai_analysis_screen.dart';
+import 'package:burgantevo/pages/expenses_page.dart';
 import 'package:burgantevo/pages/sign_in.dart';
 import 'package:burgantevo/pages/sign_up.dart';
+import 'package:burgantevo/providers/expenses_provider.dart';
 import 'package:burgantevo/providers/tripsprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -57,6 +61,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => TripsProvider()),
+        ChangeNotifierProvider(create: (_) => ExpensesProvider())
       ],
       child: const BurganTevoApp(),
     ),
@@ -94,6 +99,20 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/sign-up',
       builder: (context, state) => SignUpPage(),
+    ),
+    GoRoute(
+      path: '/expenses',
+      builder: (context, state) {
+        final trip = state.extra as Trip;
+        return ExpensesPage(trip: trip);
+      },
+    ),
+    GoRoute(
+      path: '/ai-analysis',
+      builder: (context, state) {
+        final tripId = state.extra as String;
+        return AIAnalysisScreen(tripId: tripId);
+      },
     ),
     GoRoute(
       path: '/create-trip',
